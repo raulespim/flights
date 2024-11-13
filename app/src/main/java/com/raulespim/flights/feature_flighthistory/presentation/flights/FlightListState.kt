@@ -3,11 +3,11 @@ package com.raulespim.flights.feature_flighthistory.presentation.flights
 import com.raulespim.flights.common.UiText
 import com.raulespim.flights.feature_flighthistory.data.model.Flight
 
-sealed class FlightsState {
-    data class FlightsSuccess(
+sealed class FlightListState {
+    data class FlightListSuccess(
         val flights: List<Flight> = emptyList()
-    ) : FlightsState()
+    ) : FlightListState()
 
-    data object Loading : FlightsState()
-    data class TryAgain(val errorMessage: UiText?) : FlightsState()
+    data object Loading : FlightListState()
+    data class TryAgain(val errorMessage: UiText?) : FlightListState()
 }

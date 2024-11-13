@@ -12,30 +12,30 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class FlightsViewModel @Inject constructor(
+class FlightViewModel @Inject constructor(
     private val flightUsesCase: FlightUseCases,
 ) : ViewModel() {
 
-    private val _flightsState = MutableStateFlow<FlightsState>(FlightsState.Loading)
-    val flightsState = _flightsState.asStateFlow()
+    private val _flightListState = MutableStateFlow<FlightListState>(FlightListState.Loading)
+    val flightListState = _flightListState.asStateFlow()
 
     init {
-        on(FlightsEvent.Start)
+        on(FlightEvent.Start)
     }
 
-    fun on(event: FlightsEvent) {
+    fun on(event: FlightEvent) {
         when (event) {
-            is FlightsEvent.Start -> getFlights()
+            is FlightEvent.Start -> getFlights()
         }
     }
 
     private fun getFlights() {
         flightUsesCase.getFlights().onEach { currentResult ->
 
-            _flightsState.value = when (currentResult) {
-                is RequestResource.Success -> FlightsState.FlightsSuccess(currentResult.data!!)
-                is RequestResource.Error -> FlightsState.TryAgain(currentResult.message)
-                is RequestResource.Loading -> FlightsState.Loading
+            _flightListState.value = when (currentResult) {
+                is RequestResource.Success -> FlightListState.FlightListSuccess(currentResult.data!!)
+                is RequestResource.Error -> FlightListState.TryAgain(currentResult.message)
+                is RequestResource.Loading -> FlightListState.Loading
             }
         }.launchIn(viewModelScope)
     }

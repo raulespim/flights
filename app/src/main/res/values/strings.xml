@@ -20,4 +20,5 @@
     <string name="time">Time: %1$s - %2$s</string>
     <string name="plane">Plane: %1$s</string>
     <string name="status">Status: %1$s</string>
+    <string name="flight">Flight %1$s</string>
 </resources>

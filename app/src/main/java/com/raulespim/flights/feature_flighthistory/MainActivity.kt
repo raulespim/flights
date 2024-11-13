@@ -3,7 +3,6 @@ package com.raulespim.flights.feature_flighthistory
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -13,7 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.raulespim.flights.common.ScreenRoute
-import com.raulespim.flights.feature_flighthistory.presentation.flights.composable.FlightsScreen
+import com.raulespim.flights.feature_flighthistory.presentation.flights.composable.FlightListScreen
 import com.raulespim.flights.feature_flighthistory.presentation.home.HomeScreen
 import com.raulespim.flights.ui.theme.FlightsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,7 +50,7 @@ class MainActivity : ComponentActivity() {
             }
 
             composable(route = ScreenRoute.FlightsScreen.route) {
-                FlightsScreen(onClick = {}, navController = navController)
+                FlightListScreen(onClick = {}, navController = navController)
             }
 
         }

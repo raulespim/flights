@@ -37,25 +37,25 @@ import com.raulespim.flights.common.composable.ProgressComponent
 import com.raulespim.flights.common.composable.TryAgainComponent
 import com.raulespim.flights.feature_flighthistory.data.model.Flight
 import com.raulespim.flights.feature_flighthistory.data.model.FlightStatus
-import com.raulespim.flights.feature_flighthistory.presentation.flights.FlightsState
-import com.raulespim.flights.feature_flighthistory.presentation.flights.FlightsViewModel
+import com.raulespim.flights.feature_flighthistory.presentation.flights.FlightListState
+import com.raulespim.flights.feature_flighthistory.presentation.flights.FlightViewModel
 
 @Composable
-fun FlightsScreen(
+fun FlightListScreen(
     onClick: (Flight) -> Unit,
     navController: NavHostController,
-    viewModel: FlightsViewModel = hiltViewModel()
+    viewModel: FlightViewModel = hiltViewModel()
 ) {
-    val uiState by viewModel.flightsState.collectAsState()
+    val uiState by viewModel.flightListState.collectAsState()
 
-    FlightsScreenContent(uiState, navController, onClick)
+    FlightListScreenContent(uiState, navController, onClick)
 }
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FlightsScreenContent(
-    uiState: FlightsState,
+fun FlightListScreenContent(
+    uiState: FlightListState,
     navController: NavHostController,
     onClick: (Flight) -> Unit,
 ) {
@@ -80,9 +80,9 @@ fun FlightsScreenContent(
         content = { padding ->
             Surface(modifier = Modifier.padding(padding)) {
                 when (uiState) {
-                    is FlightsState.Loading -> ProgressComponent()
-                    is FlightsState.TryAgain -> TryAgainComponent(uiState.errorMessage)
-                    is FlightsState.FlightsSuccess -> FlightsListComponent(uiState.flights, onClick)
+                    is FlightListState.Loading -> ProgressComponent()
+                    is FlightListState.TryAgain -> TryAgainComponent(uiState.errorMessage)
+                    is FlightListState.FlightListSuccess -> FlightListComponent(uiState.flights, onClick)
                 }
             }
         }
@@ -90,7 +90,7 @@ fun FlightsScreenContent(
 }
 
 @Composable
-fun FlightsListComponent(flights: List<Flight>, onClick: (Flight) -> Unit) {
+fun FlightListComponent(flights: List<Flight>, onClick: (Flight) -> Unit) {
     val context = LocalContext.current
     val categorizedFlights = categorizeFlights(context, flights)
 
@@ -168,8 +168,8 @@ private fun categorizeFlights(context: Context, flights: List<Flight>): Map<Stri
 @Preview(showBackground = true)
 @Composable
 fun FlightsScreenContentPreview() {
-    FlightsScreenContent(
-        uiState = FlightsState.FlightsSuccess(
+    FlightListScreenContent(
+        uiState = FlightListState.FlightListSuccess(
             listOf(
                 Flight(
                     id = "1",

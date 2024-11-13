@@ -59,7 +59,7 @@ fun FlightListItem(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Flight ${flight.id}",
+                    text = stringResource(R.string.flight, flight.id),
                     style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -144,7 +144,7 @@ fun FlightListItemPreview() {
         flight = Flight(
             id = "AB123",
             status = "CONCLUIDO",
-            completionStatus = "ON_TIME",
+            completionStatus = "NO_HORARIO",
             startDate = "01/01/2023",
             endDate = "01/01/2023",
             departureTime = "12:00",
