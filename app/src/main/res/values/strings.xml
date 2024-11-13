@@ -14,4 +14,10 @@
     <string name="in_flight">In-Flight</string>
     <string name="no_flights_available_for_this_status">No flights available for this status</string>
     <string name="all_flights">All Flights</string>
+    <string name="departure">Departure: %1$s</string>
+    <string name="arrival">Arrival: %1$s</string>
+    <string name="date">Date: %1$s - %2$s</string>
+    <string name="time">Time: %1$s - %2$s</string>
+    <string name="plane">Plane: %1$s</string>
+    <string name="status">Status: %1$s</string>
 </resources>

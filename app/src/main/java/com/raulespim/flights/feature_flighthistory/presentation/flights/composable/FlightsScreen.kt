@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -75,7 +74,7 @@ fun FlightsScreenContent(
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black.copy(alpha = 0.3f))
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         },
         content = { padding ->
@@ -113,7 +112,7 @@ fun FlightsListComponent(flights: List<Flight>, onClick: (Flight) -> Unit) {
         sections.forEach { (category, flightsInCategory) ->
             item {
                 Text(
-                    text = category.uppercase(),
+                    text = "${category.uppercase()} (${flightsInCategory.size})",
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -132,9 +131,8 @@ fun FlightsListComponent(flights: List<Flight>, onClick: (Flight) -> Unit) {
                             Box(
                                 modifier = Modifier
                                     .padding(horizontal = 8.dp)
-                                    .width(150.dp)
                             ) {
-                                FlightListItem(flight, onClick)
+                                FlightListItem(flight) { onClick(it) }
                             }
                         }
                     }

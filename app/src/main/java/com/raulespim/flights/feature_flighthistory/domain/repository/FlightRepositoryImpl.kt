@@ -9,8 +9,17 @@ class FlightRepositoryImpl @Inject constructor(
     private val api: FlightApi,
 ) : FlightRepository {
 
+    /**
+    Save information while app is running
+     */
+    companion object CacheLocal {
+        lateinit var listFlights: List<Flight>
+    }
+
     override suspend fun getFlights(): List<Flight> {
-        return api.getFlights().flights
+        return api.getFlights().flights.apply {
+            listFlights = this
+        }
     }
 
 }
