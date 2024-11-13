@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -49,21 +50,19 @@ fun HomeScreen(
 
                     Spacer(modifier = Modifier.height(24.dp))
 
-                    OutlinedButton(
+                    Button(
                         onClick = onViewFlightHistory,
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Spacer(modifier = Modifier.weight(1f))
                         Text(
                             text = stringResource(R.string.view_flight_history),
-                            color = Color.Black,
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                            contentDescription = null,
-                            tint = Color.Black
+                            contentDescription = null
                         )
                     }
                 }

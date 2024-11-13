@@ -16,3 +16,10 @@ data class Flight(
     @SerializedName("arrival_airport") val arrivalAirport: String,
     @SerializedName("airplane_name") val airplaneName: String
 )
+
+enum class FlightStatus(val value: String) {
+    Completed("CONCLUIDO"),
+    Canceled("CANCELADO"),
+    Upcoming("A_REALIZAR"),
+    InFlight("EM_VIAGEM")
+}
